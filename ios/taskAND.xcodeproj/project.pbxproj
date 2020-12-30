@@ -19,6 +19,9 @@
 		5D68F77A367DAFA1FFAF3013 /* libPods-taskAND.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41BBF0522B889C65DBD240E2 /* libPods-taskAND.a */; };
 		6A3A97B71C309C54FD145597 /* libPods-taskAND-taskANDTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8EB143A0EE191A4C6D0C993 /* libPods-taskAND-taskANDTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		CEB0711A259C6F8600E50338 /* Gilroy-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEB07119259C6F8600E50338 /* Gilroy-Semibold.otf */; };
+		CEB0711C259C6FB900E50338 /* Gilroy-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEB0711B259C6FB900E50338 /* Gilroy-Bold.otf */; };
+		CEB0711E259C6FD900E50338 /* Gilroy-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEB0711D259C6FD900E50338 /* Gilroy-Regular.otf */; };
 		D70081885D1A8830C06E668A /* libPods-taskAND-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D6643BFD511221EF6EDF74 /* libPods-taskAND-tvOS.a */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +65,9 @@
 		AB33FD203CF6FB1FFC1EE904 /* Pods-taskAND.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskAND.release.xcconfig"; path = "Target Support Files/Pods-taskAND/Pods-taskAND.release.xcconfig"; sourceTree = "<group>"; };
 		C30C829B181CEF3F12B86758 /* libPods-taskAND-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-taskAND-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5CDE5F7E8427E27749C2267 /* Pods-taskAND.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskAND.debug.xcconfig"; path = "Target Support Files/Pods-taskAND/Pods-taskAND.debug.xcconfig"; sourceTree = "<group>"; };
+		CEB07119259C6F8600E50338 /* Gilroy-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Semibold.otf"; sourceTree = "<group>"; };
+		CEB0711B259C6FB900E50338 /* Gilroy-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Bold.otf"; sourceTree = "<group>"; };
+		CEB0711D259C6FD900E50338 /* Gilroy-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Regular.otf"; sourceTree = "<group>"; };
 		D8EB143A0EE191A4C6D0C993 /* libPods-taskAND-taskANDTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-taskAND-taskANDTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E943B70A2F42B9EF47AFE418 /* Pods-taskAND-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskAND-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-taskAND-tvOSTests/Pods-taskAND-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -161,7 +167,6 @@
 				A21AA3DE3B2FBF02199BB75C /* Pods-taskAND-tvOSTests.debug.xcconfig */,
 				E943B70A2F42B9EF47AFE418 /* Pods-taskAND-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -175,6 +180,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				CEB07118259C6E4500E50338 /* fonts */,
 				13B07FAE1A68108700A75B9A /* taskAND */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* taskANDTests */,
@@ -196,6 +202,16 @@
 				2D02E4901E0B4A5D006451C7 /* taskAND-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CEB07118259C6E4500E50338 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CEB07119259C6F8600E50338 /* Gilroy-Semibold.otf */,
+				CEB0711D259C6FD900E50338 /* Gilroy-Regular.otf */,
+				CEB0711B259C6FB900E50338 /* Gilroy-Bold.otf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,7 +356,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB0711E259C6FD900E50338 /* Gilroy-Regular.otf in Resources */,
+				CEB0711A259C6F8600E50338 /* Gilroy-Semibold.otf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				CEB0711C259C6FB900E50338 /* Gilroy-Bold.otf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

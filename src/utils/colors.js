@@ -1,0 +1,9 @@
+export const RED_PRIMARY = '#CE3B4D';
+export const BLACK = '#222222';
+export const WHITE = '#FCFCFF';
+export const SEMI_WHITE = 'rgba(255,255,255, 0.05)';
+export const GRAY = 'rgba(34,34,34,0.1)';
+export const GRAY_BORDER = '#8C8E93';
+export const GRAY_LINE = '#E5E5E5';
+export const GRAY1 = '#F2F2F2';
+export const PURPLE = '#716AA1';
