@@ -19,6 +19,11 @@ const initialState = {
       name: 'Orange',
       price: 5,
     },
+    {
+      id: uuidv4(),
+      name: 'Sneakers',
+      price: 120,
+    },
   ],
   selectedProductId: null,
   favouritesProductsId: [],
@@ -47,10 +52,26 @@ const productsReducer = (state = initialState, action) => {
         favouritesProductsId: [...state.favouritesProductsId, action.payload],
       };
     }
+    case ProductsActionTypes.DELETE_FROM_FAVOURITE: {
+      return {
+        ...state,
+        favouritesProductsId: [
+          ...state.favouritesProductsId.filter((id) => id !== action.payload),
+        ],
+      };
+    }
     case ProductsActionTypes.ADD_TO_CART: {
       return {
         ...state,
         cartProductsId: [...state.cartProductsId, action.payload],
+      };
+    }
+    case ProductsActionTypes.DELETE_FROM_CART: {
+      return {
+        ...state,
+        cartProductsId: [
+          ...state.cartProductsId.filter((id) => id !== action.payload),
+        ],
       };
     }
     default:

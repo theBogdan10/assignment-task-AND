@@ -7,7 +7,11 @@ import {getProducts} from '../../store/selectors/productsSelector';
 import {moderateScale} from '../../utils/dimensions';
 import Header from '../../components/Header';
 import ProductCard from '../../components/ProductCard';
-import {selectProduct} from '../../store/actions/productsActions';
+import {
+  deleteFromCart,
+  deleteFromFavourite,
+  selectProduct,
+} from '../../store/actions/productsActions';
 import CustomText from '../../components/CustomText';
 
 const Favourites = ({navigation}) => {
@@ -22,9 +26,12 @@ const Favourites = ({navigation}) => {
     () => <Header title={'Favourite products'} />,
     [],
   );
-  const renderProductItem = useCallback(
-    ({item}) => <ProductCard name={item.name} price={item.price} />,
-    [],
+
+  const onDeleteItem = useCallback(
+    async (id) => {
+      await dispatch(deleteFromFavourite(id));
+    },
+    [dispatch],
   );
   const listEmptyComponent = (
     <CustomText
@@ -34,6 +41,18 @@ const Favourites = ({navigation}) => {
       size={'medium'}
     />
   );
+  const renderProductItem = useCallback(
+    ({item}) => (
+      <ProductCard
+        name={item.name}
+        price={item.price}
+        isProductsScreen={false}
+        onDelete={() => onDeleteItem(item.id)}
+      />
+    ),
+    [onDeleteItem],
+  );
+
   return (
     <SafeAreaView style={globalStyles.root}>
       <FlatList

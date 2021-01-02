@@ -8,6 +8,10 @@ import ProductCard from '../../components/ProductCard';
 import globalStyles from '../../utils/globalStyles';
 import {moderateScale} from '../../utils/dimensions';
 import CustomText from '../../components/CustomText';
+import {
+  deleteFromCart,
+  selectProduct,
+} from '../../store/actions/productsActions';
 
 const Cart = ({navigation}) => {
   const dispatch = useDispatch();
@@ -19,10 +23,24 @@ const Cart = ({navigation}) => {
 
   console.log(999, cartProductsId);
 
+  const onDeleteItem = useCallback(
+    async (id) => {
+      await dispatch(deleteFromCart(id));
+    },
+    [dispatch],
+  );
+
   const flatListHeader = useCallback(() => <Header title={'Cart'} />, []);
   const renderProductItem = useCallback(
-    ({item}) => <ProductCard name={item.name} price={item.price} />,
-    [],
+    ({item}) => (
+      <ProductCard
+        isProductsScreen={false}
+        name={item.name}
+        price={item.price}
+        onDelete={() => onDeleteItem(item.id)}
+      />
+    ),
+    [onDeleteItem],
   );
 
   const listEmptyComponent = (

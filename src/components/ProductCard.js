@@ -11,17 +11,29 @@ import {BLACK, WHITE} from '../utils/colors';
 import CustomText from './CustomText';
 import MoreIcon from '../assets/icons/more.svg';
 
-const ProductCard = ({name, price, onMorePress}) => {
+const ProductCard = ({
+  name,
+  price,
+  onMorePress,
+  isProductsScreen = true,
+  onDelete,
+}) => {
   return (
     <TouchableOpacity style={styles.item}>
       <View style={styles.headerView}>
         <CustomText color={BLACK} isSemiBold text={name} size={'medium'} />
-        <TouchableOpacity onPress={onMorePress} hitSlop={styles.hitSlopTwenty}>
-          <MoreIcon
-            width={moderateScale(20)}
-            height={moderateScale(20)}
-            fill={BLACK}
-          />
+        <TouchableOpacity
+          onPress={isProductsScreen ? onMorePress : onDelete}
+          hitSlop={styles.hitSlopTwenty}>
+          {isProductsScreen ? (
+            <MoreIcon
+              width={moderateScale(20)}
+              height={moderateScale(20)}
+              fill={BLACK}
+            />
+          ) : (
+            <CustomText isSemiBold text={'x'} size={'extra-large'} />
+          )}
         </TouchableOpacity>
       </View>
       <CustomText size={'medium'} color={BLACK} isSemiBold text={`${price}$`} />
@@ -32,6 +44,7 @@ const ProductCard = ({name, price, onMorePress}) => {
 ProductCard.propTypes = {
   name: PropTypes.string,
   onMorePress: PropTypes.func,
+  isProductsScreen: PropTypes.bool,
   price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
