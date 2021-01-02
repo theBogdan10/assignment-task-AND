@@ -15,7 +15,13 @@ import {moderateScale} from '../../utils/dimensions';
 import CustomText from '../CustomText';
 import CustomButton from '../CustomButton';
 
-const InfoModal = ({isModalVisible, onDismissModal, onDelete}) => {
+const InfoModal = ({
+  isModalVisible,
+  onDismissModal,
+  onDelete,
+  onAddToFavourite,
+  onAddToCart,
+}) => {
   return (
     <Modal
       isVisible={isModalVisible}
@@ -35,12 +41,14 @@ const InfoModal = ({isModalVisible, onDismissModal, onDelete}) => {
           text={'Add to cart'}
           textColor={WHITE}
           style={styles.buttonStyle}
+          onPress={onAddToCart}
         />
         <CustomButton
           color={GRAY_BORDER}
           textColor={WHITE}
-          text={'Add to Favorites'}
+          text={'Add to Favorite'}
           style={styles.buttonStyle}
+          onPress={onAddToFavourite}
         />
         <CustomButton
           color={RED_PRIMARY}
@@ -57,6 +65,9 @@ const InfoModal = ({isModalVisible, onDismissModal, onDelete}) => {
 InfoModal.propTypes = {
   isModalVisible: PropTypes.bool,
   onDismissModal: PropTypes.func,
+  onAddToFavourite: PropTypes.func,
+  onDelete: PropTypes.func,
+  onAddToCart: PropTypes.func,
 };
 
 const styles = StyleSheet.create({

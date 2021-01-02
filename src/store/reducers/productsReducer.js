@@ -21,6 +21,8 @@ const initialState = {
     },
   ],
   selectedProductId: null,
+  favouritesProductsId: [],
+  cartProductsId: [],
 };
 
 const productsReducer = (state = initialState, action) => {
@@ -38,6 +40,18 @@ const productsReducer = (state = initialState, action) => {
     }
     case ProductsActionTypes.SELECT_PRODUCT: {
       return {...state, selectedProductId: action.payload};
+    }
+    case ProductsActionTypes.ADD_TO_FAVOURITE: {
+      return {
+        ...state,
+        favouritesProductsId: [...state.favouritesProductsId, action.payload],
+      };
+    }
+    case ProductsActionTypes.ADD_TO_CART: {
+      return {
+        ...state,
+        cartProductsId: [...state.cartProductsId, action.payload],
+      };
     }
     default:
       return state;

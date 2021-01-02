@@ -13,6 +13,8 @@ import {PURPLE, WHITE} from '../../utils/colors';
 import PlusIcon from '../../assets/icons/plusIcon.svg';
 import {
   addNewProduct,
+  addToCart,
+  addToFavourite,
   deleteProduct,
   goToAddNewProduct,
   selectProduct,
@@ -78,6 +80,16 @@ const Products = ({navigation}) => {
     handleVisibilityInfoModal();
   }, [dispatch, handleVisibilityInfoModal, selectedProductId]);
 
+  const onAddToFavourite = useCallback(async () => {
+    await dispatch(addToFavourite(selectedProductId));
+    handleVisibilityInfoModal();
+  }, [dispatch, handleVisibilityInfoModal, selectedProductId]);
+
+  const onAddToCart = useCallback(async () => {
+    await dispatch(addToCart(selectedProductId));
+    handleVisibilityInfoModal();
+  }, [dispatch, handleVisibilityInfoModal, selectedProductId]);
+
   console.log('selected id', selectedProductId);
 
   return (
@@ -112,6 +124,8 @@ const Products = ({navigation}) => {
           isModalVisible={isInfoModalVisible}
           onDismissModal={handleVisibilityInfoModal}
           onDelete={onDeleteProduct}
+          onAddToFavourite={onAddToFavourite}
+          onAddToCart={onAddToCart}
         />
       )}
     </SafeAreaView>
@@ -123,7 +137,6 @@ const styles = StyleSheet.create({
     marginBottom: moderateScale(30),
   },
   addProductView: {
-    padding: moderateScale(20),
     backgroundColor: PURPLE,
     width: moderateScale(60),
     height: moderateScale(60),
@@ -131,8 +144,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    bottom: moderateScale(10),
-    right: moderateScale(10),
+    bottom: moderateScale(15),
+    right: moderateScale(15),
   },
 });
 

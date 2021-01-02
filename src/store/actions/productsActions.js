@@ -14,6 +14,20 @@ export const deleteProduct = (payload) => {
   };
 };
 
+export const addToFavourite = (payload) => {
+  return {
+    type: ProductsActionTypes.ADD_TO_FAVOURITE,
+    payload,
+  };
+};
+
+export const addToCart = (payload) => {
+  return {
+    type: ProductsActionTypes.ADD_TO_CART,
+    payload,
+  };
+};
+
 export const selectProduct = (payload) => {
   return {
     type: ProductsActionTypes.SELECT_PRODUCT,
