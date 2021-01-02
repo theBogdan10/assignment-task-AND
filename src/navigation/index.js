@@ -19,7 +19,7 @@ import {SMALL_FONT} from '../utils/constants';
 import {NavigationScreens} from './screens';
 import Products from '../screens/Products';
 import Cart from '../screens/Cart';
-import Favorites from '../screens/Favorites';
+import Favourites from '../screens/Favourites';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -42,7 +42,7 @@ const renderIcon = (routeName, isActive) => {
           width={moderateScale(20)}
         />
       );
-    case NavigationScreens.FAVORITES:
+    case NavigationScreens.FAVOURITES:
       return (
         <FavoriteIcon
           fill={isActive ? RED_PRIMARY : BLACK}
@@ -79,7 +79,7 @@ const HomeStack = () => {
       })}>
       <Tab.Screen name={NavigationScreens.PRODUCTS} component={Products} />
       <Tab.Screen name={NavigationScreens.CART} component={Cart} />
-      <Tab.Screen name={NavigationScreens.FAVORITES} component={Favorites} />
+      <Tab.Screen name={NavigationScreens.FAVOURITES} component={Favourites} />
     </Tab.Navigator>
   );
 };

@@ -8,7 +8,7 @@ import {
   LARGE_FONT,
   MEDIUM_FONT,
   SMALL_FONT,
-} from '../utils/Constants';
+} from '../utils/constants';
 import {BLACK} from '../utils/colors';
 import {PRIMARY_FONT, REGULAR_FONT, SEMI_BOLD_FONT} from '../utils/fonts';
 
