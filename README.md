@@ -1,5 +1,4 @@
 ## Products app
-___
 
 ### Usage
 
