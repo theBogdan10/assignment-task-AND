@@ -8,12 +8,35 @@ import {moderateScale} from '../../utils/dimensions';
 import CustomText from '../CustomText';
 import CustomButton from '../CustomButton';
 import CustomTextInput from '../CustomTextInput';
+import {useDispatch, useSelector} from 'react-redux';
+import {getProducts} from '../../store/selectors/productsSelector';
 
-const AddNewProductModal = ({
+const ProductModal = ({
   isModalVisible,
   onDismissModal,
   onSubmitSaveProduct,
+  isEdit = false,
+  onSubmitSaveEdit,
 }) => {
+  const dispatch = useDispatch();
+  const {products, selectedProductId} = useSelector(getProducts);
+
+  const product = products?.filter(
+    (product) => product.id === selectedProductId,
+  )[0];
+
+  console.log(7777, product);
+
+  const headerText = isEdit ? 'Edit product' : 'Input info about new product';
+  const initialValues = isEdit
+    ? {
+        name: product.name,
+        price: product.price.toString(),
+      }
+    : {
+        name: '',
+        price: '',
+      };
   return (
     <Modal
       isVisible={isModalVisible}
@@ -22,15 +45,15 @@ const AddNewProductModal = ({
       onBackdropPress={onDismissModal}>
       <View style={styles.root}>
         <CustomText
-          text={'Input info about new product'}
+          text={headerText}
           size={'large'}
           color={WHITE}
           isBold
           isCenter
         />
         <Formik
-          initialValues={{name: '', price: ''}}
-          onSubmit={onSubmitSaveProduct}>
+          initialValues={initialValues}
+          onSubmit={isEdit ? onSubmitSaveEdit : onSubmitSaveProduct}>
           {({handleChange, handleBlur, handleSubmit, values}) => {
             const isEnableButton = values.name && values.price;
             return (
@@ -70,11 +93,12 @@ const AddNewProductModal = ({
   );
 };
 
-AddNewProductModal.propTypes = {
+ProductModal.propTypes = {
   isModalVisible: PropTypes.bool,
   onDismissModal: PropTypes.func,
   errorMessage: PropTypes.string,
   errorTitle: PropTypes.string,
+  isEdit: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
@@ -94,4 +118,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddNewProductModal;
+export default ProductModal;

@@ -18,9 +18,11 @@ import {
   deleteProduct,
   goToAddNewProduct,
   selectProduct,
+  updateProduct,
 } from '../../store/actions/productsActions';
-import AddNewProductModal from '../../components/Modals/AddNewProductModal';
+import ProductModal from '../../components/Modals/ProductModal';
 import InfoModal from '../../components/Modals/InfoModal';
+import CustomText from '../../components/CustomText';
 
 const Products = ({navigation}) => {
   const [
@@ -28,6 +30,7 @@ const Products = ({navigation}) => {
     setIsAddNewProductModalVisible,
   ] = useState(false);
   const [isInfoModalVisible, setIsInfoModalVisible] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
   const dispatch = useDispatch();
   const {products, selectedProductId} = useSelector(getProducts);
@@ -36,10 +39,12 @@ const Products = ({navigation}) => {
     () => <Header title={'Your products'} />,
     [],
   );
-  const handleVisibilityAddNewProductModal = useCallback(
-    () => setIsAddNewProductModalVisible((oldState) => !oldState),
-    [],
-  );
+  const handleVisibilityAddNewProductModal = useCallback(() => {
+    setIsAddNewProductModalVisible((oldState) => !oldState);
+    if (isEdit) {
+      setIsEdit(false);
+    }
+  }, [isEdit]);
   const handleVisibilityInfoModal = useCallback(() => {
     setIsInfoModalVisible((oldState) => !oldState);
   }, []);
@@ -62,6 +67,7 @@ const Products = ({navigation}) => {
     },
     [dispatch, handleVisibilityAddNewProductModal],
   );
+
   const renderProductItem = useCallback(
     ({item}) => (
       <ProductCard
@@ -71,9 +77,14 @@ const Products = ({navigation}) => {
           dispatch(selectProduct(item.id));
           handleVisibilityInfoModal();
         }}
+        onEdit={() => {
+          setIsEdit(true);
+          dispatch(selectProduct(item.id));
+          handleVisibilityAddNewProductModal();
+        }}
       />
     ),
-    [dispatch, handleVisibilityInfoModal],
+    [dispatch, handleVisibilityAddNewProductModal, handleVisibilityInfoModal],
   );
   const onDeleteProduct = useCallback(async () => {
     await dispatch(deleteProduct(selectedProductId));
@@ -90,7 +101,14 @@ const Products = ({navigation}) => {
     handleVisibilityInfoModal();
   }, [dispatch, handleVisibilityInfoModal, selectedProductId]);
 
-  console.log('selected id', selectedProductId);
+  const listEmptyComponent = (
+    <CustomText
+      text={'Oops...There are no products'}
+      isCenter
+      isBold
+      size={'medium'}
+    />
+  );
 
   return (
     <SafeAreaView style={globalStyles.root}>
@@ -101,6 +119,7 @@ const Products = ({navigation}) => {
         ListHeaderComponentStyle={styles.headerStyles}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item.id}
+        ListEmptyComponent={listEmptyComponent}
       />
       <TouchableOpacity
         onPress={onPressAddProduct}
@@ -113,10 +132,21 @@ const Products = ({navigation}) => {
         />
       </TouchableOpacity>
       {isAddNewProductModalVisible && (
-        <AddNewProductModal
+        <ProductModal
           isModalVisible={isAddNewProductModalVisible}
           onDismissModal={handleVisibilityAddNewProductModal}
           onSubmitSaveProduct={onSubmitSaveProduct}
+          onSubmitSaveEdit={(values) => {
+            dispatch(
+              updateProduct({
+                id: selectedProductId,
+                name: values.name,
+                price: values.price,
+              }),
+            );
+            handleVisibilityAddNewProductModal();
+          }}
+          isEdit={isEdit}
         />
       )}
       {isInfoModalVisible && (

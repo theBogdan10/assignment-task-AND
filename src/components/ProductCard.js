@@ -7,9 +7,10 @@ import {
   deviceWidth,
   moderateScale,
 } from '../utils/dimensions';
-import {BLACK, WHITE} from '../utils/colors';
+import {BLACK, GRAY, GRAY1, GRAY_LINE, WHITE} from '../utils/colors';
 import CustomText from './CustomText';
 import MoreIcon from '../assets/icons/more.svg';
+import EditIcon from '../assets/icons/edit.svg';
 
 const ProductCard = ({
   name,
@@ -17,33 +18,52 @@ const ProductCard = ({
   onMorePress,
   isProductsScreen = true,
   onDelete,
+  onEdit,
 }) => {
   return (
-    <TouchableOpacity style={styles.item}>
+    <View style={styles.item}>
       <View style={styles.headerView}>
-        <CustomText color={BLACK} isSemiBold text={name} size={'medium'} />
+        <CustomText color={BLACK} isSemiBold text={name} size={'large'} />
         <TouchableOpacity
           onPress={isProductsScreen ? onMorePress : onDelete}
           hitSlop={styles.hitSlopTwenty}>
           {isProductsScreen ? (
             <MoreIcon
-              width={moderateScale(20)}
-              height={moderateScale(20)}
+              width={moderateScale(22)}
+              height={moderateScale(22)}
               fill={BLACK}
             />
           ) : (
-            <CustomText isSemiBold text={'x'} size={'extra-large'} />
+            <CustomText isSemiBold text={'X'} size={'large'} />
           )}
         </TouchableOpacity>
       </View>
-      <CustomText size={'medium'} color={BLACK} isSemiBold text={`${price}$`} />
-    </TouchableOpacity>
+      <View style={[styles.headerView, styles.footerView]}>
+        <CustomText
+          size={'large'}
+          color={BLACK}
+          isSemiBold
+          text={`${price}$`}
+        />
+        {isProductsScreen && (
+          <TouchableOpacity hitSlop={styles.hitSlopTwenty} onPress={onEdit}>
+            <EditIcon
+              width={moderateScale(15)}
+              height={moderateScale(15)}
+              fill={BLACK}
+            />
+          </TouchableOpacity>
+        )}
+      </View>
+    </View>
   );
 };
 
 ProductCard.propTypes = {
   name: PropTypes.string,
   onMorePress: PropTypes.func,
+  onEdit: PropTypes.func,
+  onDelete: PropTypes.func,
   isProductsScreen: PropTypes.bool,
   price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
@@ -53,7 +73,7 @@ const styles = StyleSheet.create({
     width: '90%',
     alignSelf: 'center',
     paddingVertical: moderateScale(15),
-    paddingHorizontal: moderateScale(15),
+    paddingHorizontal: moderateScale(10),
     borderRadius: moderateScale(20),
     backgroundColor: WHITE,
     elevation: 3,
@@ -75,10 +95,12 @@ const styles = StyleSheet.create({
   },
   headerView: {
     width: '100%',
-    marginBottom: moderateScale(10),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  footerView: {
+    marginTop: moderateScale(20),
   },
 });
 

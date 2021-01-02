@@ -35,6 +35,19 @@ const productsReducer = (state = initialState, action) => {
     case ProductsActionTypes.ADD_NEW_PRODUCT: {
       return {...state, products: [...state.products, action.payload]};
     }
+    case ProductsActionTypes.UPDATE_PRODUCT: {
+      const index = state.products.findIndex(
+        (product) => product.id === action.payload.id,
+      );
+
+      const newArray = [...state.products]; //making a new array
+      newArray[index].name = action.payload.name;
+      newArray[index].price = action.payload.price;
+      return {
+        ...state,
+        products: newArray,
+      };
+    }
     case ProductsActionTypes.DELETE_PRODUCT: {
       return {
         ...state,

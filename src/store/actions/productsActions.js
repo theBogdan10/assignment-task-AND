@@ -7,6 +7,13 @@ export const addNewProduct = (payload) => {
   };
 };
 
+export const updateProduct = (payload) => {
+  return {
+    type: ProductsActionTypes.UPDATE_PRODUCT,
+    payload,
+  };
+};
+
 export const deleteProduct = (payload) => {
   return {
     type: ProductsActionTypes.DELETE_PRODUCT,

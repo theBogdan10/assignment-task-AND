@@ -3,6 +3,7 @@
 //------------------------------------//
 export const ProductsActionTypes = {
   ADD_NEW_PRODUCT: '@products/ADD_NEW_PRODUCT',
+  UPDATE_PRODUCT: '@products/UPDATE_PRODUCT',
   DELETE_PRODUCT: '@products/DELETE_PRODUCT',
   ADD_TO_FAVOURITE: '@products/ADD_TO_FAVOURITE',
   ADD_TO_CART: '@products/ADD_TO_CART',
