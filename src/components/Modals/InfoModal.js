@@ -21,6 +21,8 @@ const InfoModal = ({
   onDelete,
   onAddToFavourite,
   onAddToCart,
+  isAddToCart,
+  isAddToFavourites,
 }) => {
   return (
     <Modal
@@ -36,20 +38,24 @@ const InfoModal = ({
           isBold
           isCenter
         />
-        <CustomButton
-          color={PURPLE}
-          text={'Add to cart'}
-          textColor={WHITE}
-          style={styles.buttonStyle}
-          onPress={onAddToCart}
-        />
-        <CustomButton
-          color={GRAY_BORDER}
-          textColor={WHITE}
-          text={'Add to Favorite'}
-          style={styles.buttonStyle}
-          onPress={onAddToFavourite}
-        />
+        {isAddToCart && (
+          <CustomButton
+            color={PURPLE}
+            text={'Add to cart'}
+            textColor={WHITE}
+            style={styles.buttonStyle}
+            onPress={onAddToCart}
+          />
+        )}
+        {isAddToFavourites && (
+          <CustomButton
+            color={GRAY_BORDER}
+            textColor={WHITE}
+            text={'Add to Favorite'}
+            style={styles.buttonStyle}
+            onPress={onAddToFavourite}
+          />
+        )}
         <CustomButton
           color={RED_PRIMARY}
           text={'Delete product'}

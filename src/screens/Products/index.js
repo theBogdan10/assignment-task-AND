@@ -33,7 +33,12 @@ const Products = ({navigation}) => {
   const [isEdit, setIsEdit] = useState(false);
 
   const dispatch = useDispatch();
-  const {products, selectedProductId} = useSelector(getProducts);
+  const {
+    products,
+    selectedProductId,
+    favouritesProductsId,
+    cartProductsId,
+  } = useSelector(getProducts);
 
   const flatListHeader = useCallback(
     () => <Header title={'Your products'} />,
@@ -156,6 +161,8 @@ const Products = ({navigation}) => {
           onDelete={onDeleteProduct}
           onAddToFavourite={onAddToFavourite}
           onAddToCart={onAddToCart}
+          isAddToFavourites={!favouritesProductsId.includes(selectedProductId)}
+          isAddToCart={!cartProductsId.includes(selectedProductId)}
         />
       )}
     </SafeAreaView>
